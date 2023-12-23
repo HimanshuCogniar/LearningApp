@@ -47,6 +47,8 @@ export class LearningservicesService {
   }
   
   setLoginSecurityHeaders() {
+
+    
     this._headerslogin = new HttpHeaders();
     this._headerslogin = this._headerslogin.append("Content-type", "application/json");
     this._headerslogin = this._headerslogin.append("Accept", "application/json");
