@@ -23,7 +23,7 @@ export class LearningservicesService {
   private _headerslogin!: HttpHeaders;
   token = localStorage.getItem('BToken');
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  baseUrl: string ="https://localhost:7073/api/v1.1/";
+  baseUrl: string ="https://localhost:7229/api/";
  // baseUrl: string ="https://tmsenterprisedevapi.azurewebsites.net/api/v1.1/";
   constructor(private http:HttpClient, private router: Router,  private httpClient: HttpClient) { 
     this.setLoginSecurityHeaders();
@@ -70,12 +70,12 @@ export class LearningservicesService {
     this._headers = this._headers.append("Authorization", "Bearer " + localStorage.getItem('BToken'));
     return this.http.post( this.baseUrl + "login/logIn",reqData, { headers:this._headers });
    }
-   getAllUser(): Observable<any> {
+   getAllUsers(): Observable<any> {
     this._headers = new HttpHeaders();
     this._headers = this._headers.append("Content-type", "application/json");
     this._headers = this._headers.append("Accept", "application/json");
     this._headers = this._headers.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT");
     this._headers = this._headers.append("Authorization", "Bearer " + localStorage.getItem('BToken'));
-    return this.http.post( this.baseUrl + "AppUser/getallusers", { headers:this._headers });
+    return this.http.post( this.baseUrl + "Users", { headers:this._headers });
    }
 }

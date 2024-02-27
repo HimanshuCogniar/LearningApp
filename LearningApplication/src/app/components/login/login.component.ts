@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LearningservicesService } from 'src/app/services/learningservices.service';
@@ -8,16 +8,29 @@ import notify from 'devextreme/ui/notify';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit {
+Gautham(data:any) {
+  alert(data)
+throw new Error('Method not implemented.');
 
+}
+  loginForm: FormGroup;
+  wearesignup='Himanshu';
   constructor(private formBuilder: FormBuilder, private router: Router,private service: LearningservicesService) {
     this.loginForm = this.formBuilder.group({
       emailNumber: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
+  ngOnInit(): void {
+this.getAllUsers();
+  }
+getAllUsers(){
+  this.service.getAllUsers().subscribe((result: any) => {
+    console.log(result);
+  });
 
+}
   onSubmit() {
     if (this.loginForm.valid) {
       const reqData = {
